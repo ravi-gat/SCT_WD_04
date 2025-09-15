@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Stylish To-Do App</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>📋 Advanced Stylish To-Do App</h1>
+
+  <div class="auth-buttons">
+    <button id="themeToggle">🌙 Dark Mode</button>
+    <button id="authorize_button">🔑 Sign in with Google</button>
+    <button id="signout_button" style="display:none;">🚪 Sign Out</button>
+    <button id="sync_button" style="display:none;">🔄 Push to Google Calendar</button>
+    <button id="import_button" style="display:none;">⬇️ Import from Google Calendar</button>
+  </div>
+
+  <div id="syncStatus">⏳ Not synced yet</div>
+
+  <div class="tabs">
+    <button id="taskTab" class="active">📋 Task List</button>
+    <button id="calendarTab">📅 Calendar</button>
+  </div>
+
+  <!-- Task Section -->
+  <div id="taskSection">
+    <input type="text" id="task" placeholder="Enter task">
+    <input type="datetime-local" id="datetime">
+    <select id="category">
+      <option>General</option>
+      <option>Work</option>
+      <option>Personal</option>
+      <option>Shopping</option>
+    </select>
+    <button onclick="addTask()">➕ Add Task</button>
+
+    <input type="text" id="search" placeholder="Search tasks..." onkeyup="renderTasks()">
+    <select id="filter" onchange="renderTasks()">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="pending">Pending</option>
+    </select>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <!-- Calendar Section -->
+  <div id="calendarSection" style="display:none;">
+    <div class="view-switcher">
+      <button onclick="changeView('dayGridMonth')">📅 Month</button>
+      <button onclick="changeView('timeGridWeek')">📆 Week</button>
+      <button onclick="changeView('timeGridDay')">📅 Day</button>
+    </div>
+    <div id="calendar"></div>
+  </div>
+
+  <audio id="reminderSound" src="notify.mp3" preload="auto"></audio>
+
+  <!-- Google API -->
+  <script async defer src="https://apis.google.com/js/api.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
